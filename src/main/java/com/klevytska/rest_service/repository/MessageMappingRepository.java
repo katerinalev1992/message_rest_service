@@ -1,6 +1,4 @@
 package com.klevytska.rest_service.repository;
-
-import com.klevytska.rest_service.entity.Message;
 import com.klevytska.rest_service.entity.MessageMapping;
 import com.klevytska.rest_service.entity.User;
 
@@ -29,6 +27,7 @@ public class MessageMappingRepository {
     public List<MessageMapping> getAll(){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<MessageMapping> criteria = criteriaBuilder.createQuery(MessageMapping.class);
+        Root<MessageMapping> element = criteria.from(MessageMapping.class);
         return entityManager.createQuery(criteria).getResultList();
     }
 
@@ -38,12 +37,9 @@ public class MessageMappingRepository {
     }
 
     public List<MessageMapping> getByFromId(User from_id){
-        logger.info("Get message mapping by user from_id: " + from_id);
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<MessageMapping> criteriaQuery = criteriaBuilder.createQuery(MessageMapping.class);
-        Root<MessageMapping> element = criteriaQuery.from(MessageMapping.class);
-        criteriaQuery.select(element).where(criteriaBuilder.equal(element.get("from_id"), from_id));
-
-        return entityManager.createQuery(criteriaQuery).getResultList();
+        CriteriaQuery<MessageMapping> criteria = criteriaBuilder.createQuery(MessageMapping.class);
+        Root<MessageMapping> element = criteria.from(MessageMapping.class);
+        return entityManager.createQuery(criteria).getResultList();
     }
 }

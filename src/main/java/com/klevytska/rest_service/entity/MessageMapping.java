@@ -10,27 +10,24 @@ import java.io.Serializable;
  */
 @Entity
 @XmlRootElement
-@Table(name="messenger_map")
+@Table(name="messengermap")
 public class MessageMapping implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
     @JoinColumn(name = "to_id")
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User to_id;
 
-    @NotNull
-    @JoinColumn(name = "from_id")
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "from_id")
     private User from_id;
 
-    @NotNull
-    @JoinColumn(name = "message_id")
     @ManyToOne(targetEntity = Message.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private User message_id;
+    @JoinColumn(name = "message_id")
+    private Message message_id;
 
     public long getId() {
         return id;
@@ -56,11 +53,11 @@ public class MessageMapping implements Serializable{
         this.from_id = from_id;
     }
 
-    public User getMessage_id() {
+    public Message getMessage_id() {
         return message_id;
     }
 
-    public void setMessage_id(User message_id) {
+    public void setMessage_id(Message message_id) {
         this.message_id = message_id;
     }
 

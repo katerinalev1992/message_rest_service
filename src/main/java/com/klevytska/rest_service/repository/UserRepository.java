@@ -28,22 +28,22 @@ public class UserRepository {
         logger.info("Get User by id: " + id);
         return entityManager.find(User.class, id);
     }
+//
+//    public User getByUserName(String nick_name){
+//        logger.info("Get users by nick_name: " + nick_name);
+//        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+//        CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+//        Root<User> element = criteriaQuery.from(User.class);
+//
+//        criteriaQuery.select(element).where(criteriaBuilder.equal(element.get("nick_name"), nick_name));
+//        return  entityManager.createQuery(criteriaQuery).getSingleResult();
+//    }
 
-    public User getByUserName(String nick_name){
-        logger.info("Get users by nick_name: " + nick_name);
+    public List<User> getAll() {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
-        Root<User> element = criteriaQuery.from(User.class);
-
-        criteriaQuery.select(element).where(criteriaBuilder.equal(element.get("nick_name"), nick_name));
-        return  entityManager.createQuery(criteriaQuery).getSingleResult();
-    }
-
-    public List<User> getAll(){
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
-
-        return entityManager.createQuery(criteriaQuery).getResultList();
+        CriteriaQuery<User> criteria = criteriaBuilder.createQuery(User.class);
+        Root<User> element = criteria.from(User.class);
+        return entityManager.createQuery(criteria).getResultList();
     }
 }
 

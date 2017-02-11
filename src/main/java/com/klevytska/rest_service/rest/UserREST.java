@@ -4,6 +4,7 @@ import com.klevytska.rest_service.entity.User;
 import com.klevytska.rest_service.registrator.UserRegistrator;
 import com.klevytska.rest_service.repository.UserRepository;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -17,9 +18,8 @@ import java.util.logging.Logger;
 /**
  * Created by katerynalevytska on 2/11/17.
  */
-
-@Path("/user")
 @RequestScoped
+@Path("/user")
 public class UserREST {
 
     @Inject
@@ -29,7 +29,7 @@ public class UserREST {
     private UserRepository userRepository;
 
     @Inject
-    UserRegistrator userRegistrator;
+    private UserRegistrator userRegistrator;
 
     @GET
     @Path("/")

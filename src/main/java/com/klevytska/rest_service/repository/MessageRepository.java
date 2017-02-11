@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -30,7 +31,8 @@ public class MessageRepository {
 
     public List<Message> getAll(){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Message> criteriaQuery = criteriaBuilder.createQuery(Message.class);
-        return entityManager.createQuery(criteriaQuery).getResultList();
+        CriteriaQuery<Message> criteria = criteriaBuilder.createQuery(Message.class);
+        Root<Message> element = criteria.from(Message.class);
+        return entityManager.createQuery(criteria).getResultList();
     }
 }

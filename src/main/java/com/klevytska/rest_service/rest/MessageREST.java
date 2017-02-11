@@ -5,6 +5,7 @@ import com.klevytska.rest_service.registrator.MessageRegistrator;
 import com.klevytska.rest_service.repository.MessageRepository;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 /**
  * Created by katerynalevytska on 2/11/17.
  */
-@ApplicationScoped
+@RequestScoped
 @Path("/message")
 public class MessageREST {
 

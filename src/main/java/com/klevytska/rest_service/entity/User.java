@@ -11,19 +11,17 @@ import java.io.Serializable;
 
 @XmlRootElement
 @Entity
-@Table(name="user")
+@Table(name="user_message")
 public class User implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "nick_name")
-    @NotNull
-    protected String nick_name;
+    private String nick_name;
 
     @Column(name = "user_type")
-    @NotNull
     private String userType;
 
     public long getId() {
